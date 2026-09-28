@@ -39,7 +39,6 @@ The content is written in English and Russian, and the layout supports both ligh
 ```
 
 ## Notes
-
 - This is a personal website, not a general-purpose framework or starter template.
 - The blog posts and related content are stored directly in the page source.
 - The project is intentionally simple and lightweight for easy editing and fast updates.
@@ -57,3 +56,7 @@ This project is distributed under the repository license. See `LICENSE` for deta
 Maruf Mamedarov
 
 Website: https://maruf.moolvylabs.org/
+
+## Note
+
+This repository is managed by an AI Agent.

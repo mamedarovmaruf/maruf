@@ -262,6 +262,89 @@ h1 { font-size: 1.4rem; }
 .post-title { font-size: 1.5rem; }
 .container { padding: 1.5rem 1rem; }
 }
+.social-links {
+display: flex;
+gap: 0.7rem;
+margin-top: 1rem;
+}
+.social-links a {
+width: 34px;
+height: 34px;
+border-radius: 50%;
+border: 1px solid var(--border-color);
+color: var(--text-color);
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+.social-links a:hover {
+background-color: var(--text-color);
+color: var(--bg-color);
+border-color: var(--text-color);
+transform: translateY(-2px);
+}
+.social-links svg {
+width: 16px;
+height: 16px;
+fill: currentColor;
+}
+.partners {
+margin-bottom: 2rem;
+}
+.partners-title {
+font-size: 0.75rem;
+font-weight: 500;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+margin-bottom: 1rem;
+}
+.partners-carousel {
+overflow: hidden;
+width: 100%;
+-webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+.partners-track {
+display: flex;
+width: max-content;
+animation: partners-scroll 24s linear infinite;
+}
+.partners-carousel:hover .partners-track {
+animation-play-state: paused;
+}
+.partners-group {
+display: flex;
+flex-shrink: 0;
+}
+.partner-logo {
+flex-shrink: 0;
+display: block;
+width: 64px;
+height: 64px;
+margin: 0 1.6rem;
+border-radius: 14px;
+overflow: hidden;
+border: 1px solid var(--border-color);
+transition: transform var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+.partner-logo:hover {
+transform: scale(1.1);
+border-color: var(--text-color);
+}
+.partner-logo img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+@keyframes partners-scroll {
+from { transform: translateX(0); }
+to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+.partners-track { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -283,10 +366,41 @@ h1 { font-size: 1.4rem; }
 </div>
 </div>
 <p class="site-tagline" id="site-tagline">Latest insights, trends, and news from the world of technology and artificial intelligence.</p>
+<div class="social-links">
+<a href="https://x.com/mamedarovmaruf" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" title="X">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a>
+<a href="https://t.me/mamedarovmaruf" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+</a>
+</div>
 </header>
 <main id="blog-posts"></main>
 <p class="search-no-results" id="search-no-results" hidden>No matching posts found.</p>
 <footer>
+<div class="partners">
+<p class="partners-title" id="partners-title">Our partners</p>
+<div class="partners-carousel">
+<div class="partners-track">
+<div class="partners-group">
+<a class="partner-logo" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+</div>
+<div class="partners-group" aria-hidden="true">
+<a class="partner-logo" tabindex="-1" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" tabindex="-1" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" tabindex="-1" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" tabindex="-1" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" tabindex="-1" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+<a class="partner-logo" tabindex="-1" href="https://huggingface.co/moolvylabs" target="_blank" rel="noopener noreferrer" aria-label="moolvylabs on Hugging Face" title="moolvylabs"><img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6a835212910b1251b4572a3e/f_Y91T5uUy8lF3FtmsLl4.jpeg" alt="moolvylabs"></a>
+</div>
+</div>
+</div>
+</div>
 <p id="author-name">Author: mamedarov maruf</p>
 </footer>
 </div>
@@ -399,6 +513,7 @@ const themeBtn = document.getElementById('theme-btn');
 const siteTitle = document.getElementById('site-title');
 const siteTagline = document.getElementById('site-tagline');
 const authorName = document.getElementById('author-name');
+const partnersTitle = document.getElementById('partners-title');
 
 const uiTranslations = {
 en: {
@@ -406,14 +521,16 @@ title: "Maruf’s Tech & AI Blog",
 tagline: "Latest insights, trends, and news from the world of technology and artificial intelligence.",
 author: "Author: mamedarov maruf",
 btnLabel: "RU",
-postLabel: "Post"
+postLabel: "Post",
+partners: "Our partners"
 },
 ru: {
 title: "Блог Maruf о технологиях и ИИ",
 tagline: "Актуальные идеи, тренды и новости из мира технологий и искусственного интеллекта.",
 author: "Автор: mamedarov maruf",
 btnLabel: "EN",
-postLabel: "Пост"
+postLabel: "Пост",
+partners: "Наши партнеры"
 }
 };
 
@@ -452,6 +569,7 @@ function updateUI() {
 renderSiteTitle(uiTranslations[currentLang].title);
 siteTagline.textContent = uiTranslations[currentLang].tagline;
 authorName.textContent = uiTranslations[currentLang].author;
+partnersTitle.textContent = uiTranslations[currentLang].partners;
 langBtn.textContent = uiTranslations[currentLang].btnLabel;
 document.documentElement.setAttribute('data-theme', currentTheme);
 renderPosts();

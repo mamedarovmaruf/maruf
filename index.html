@@ -150,6 +150,63 @@ transition: transform 0.3s ease;
 .search-toggle:hover svg {
 transform: scale(1.15) rotate(-10deg);
 }
+.theme-toggle {
+width: 34px;
+height: 34px;
+padding: 0;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+position: relative;
+overflow: hidden;
+}
+.theme-toggle .theme-icon {
+position: relative;
+width: 16px;
+height: 16px;
+display: block;
+transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.theme-toggle:hover .theme-icon {
+transform: rotate(20deg);
+}
+.theme-toggle:active {
+transform: scale(0.88);
+}
+.theme-toggle svg {
+position: absolute;
+inset: 0;
+width: 16px;
+height: 16px;
+transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.theme-toggle .icon-moon {
+opacity: 1;
+transform: rotate(0deg) scale(1);
+}
+.theme-toggle .icon-sun {
+opacity: 0;
+transform: rotate(-90deg) scale(0.4);
+}
+[data-theme="dark"] .theme-toggle .icon-moon {
+opacity: 0;
+transform: rotate(90deg) scale(0.4);
+}
+[data-theme="dark"] .theme-toggle .icon-sun {
+opacity: 1;
+transform: rotate(0deg) scale(1);
+}
+.theme-toggle:focus-visible {
+outline: 2px solid var(--brand-blue);
+outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+.theme-toggle, .theme-toggle .theme-icon, .theme-toggle svg {
+transition: none;
+}
+}
 .search-toggle[aria-expanded="true"] {
 background-color: var(--text-color);
 color: var(--bg-color);
@@ -309,7 +366,12 @@ h1 { font-size: 1.4rem; }
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
 </button>
 <button id="lang-btn">RU</button>
-<button id="theme-btn">Theme</button>
+<button id="theme-btn" class="theme-toggle" type="button" aria-label="Toggle dark theme" title="Toggle theme">
+<span class="theme-icon">
+<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+</span>
+</button>
 </div>
 <div class="search-panel" id="search-panel">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -533,10 +595,6 @@ const noResultsEl = document.getElementById('search-no-results');
 
 const searchPlaceholders = { en: 'Search…', ru: 'Поиск…' };
 const noResultsText = { en: 'No matching posts found.', ru: 'Совпадений не найдено.' };
-
-// Matches "1", "post 1", "post1", "пост 1", "#1", "№1" as a request for a specific post number.
-// Anchored (^...$) so it only fires when the WHOLE query is a number reference,
-// not when a digit merely appears inside a longer text search.
 const POST_NUMBER_RE = /^(?:post|пост|№|#)?\s*(\d+)\s*$/i;
 
 function extractPostNumber(query) {
@@ -549,9 +607,6 @@ const rawQuery = searchInput.value.trim();
 const articles = mainContainer.querySelectorAll('article[data-post-id]');
 const queryLower = rawQuery.toLowerCase();
 const requestedNumber = rawQuery ? extractPostNumber(rawQuery) : null;
-// Only treat the query as a "find post #N" lookup if that post actually exists.
-// Otherwise a purely numeric query (e.g. a year mentioned in the text, "2026")
-// would incorrectly match nothing instead of falling back to a text search.
 const postNumberExists = requestedNumber !== null && blogData.some((p) => p.id === requestedNumber);
 let visibleCount = 0;
 
@@ -614,8 +669,6 @@ document.addEventListener('keydown', (e) => {
 if (e.key === 'Escape') closeSearch();
 });
 
-// Keep the search placeholder / empty-state text and active filter in sync
-// with the existing language and theme toggles (both re-render the post list).
 langBtn.addEventListener('click', () => {
 searchInput.placeholder = searchPlaceholders[currentLang];
 applySearchFilter();
